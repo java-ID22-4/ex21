@@ -4,41 +4,49 @@
     <meta charset="UTF-8">
     <title>Выданные книги</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/issuedBooks.css}"/>
 </head>
 <body>
-<h1>Список всех выданных книг</h1>
-
-<!-- Таблица для отображения всех выданных книг -->
-<table border="1" id="bookTable">
-    <thead>
-    <tr>
-        <th>Имя студента</th>
-        <th>Фамилия студента</th>
-        <th>Название книги</th>
-        <th>Издательство</th>
-        <th>Дата выдачи</th>
-        <th>Дата возврата</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="issuedBook : ${issuedBooks}">
-        <td th:text="${issuedBook.student.name}"></td> <!-- Имя студента -->
-        <td th:text="${issuedBook.student.surname}"></td>  <!-- Фамилия студента -->
-        <td th:text="${issuedBook.book.title}"></td>        <!-- Название книги -->
-        <td th:text="${issuedBook.book.publisher}"></td>    <!-- Издательство книги -->
-        <td th:text="${issuedBook.issueDate}"></td>         <!-- Дата выдачи -->
-        <td th:text="${issuedBook.returnDate}"></td>        <!-- Дата возврата (может быть null, если книга не возвращена) -->
-        <td th:text="Нет"></td>
-    </tr>
-    </tbody>
-</table>
-
-<h2>Гистограмма выдачи книг по дням</h2>
-
-<!-- Элемент для отображения гистограммы -->
-<canvas id="issuedBooksChart" width="400" height="200"></canvas>
-
+<div class="sidebar">
+    <ul>
+        <li><a href="/books">Книги</a></li>
+        <li><a href="/students">Ученики</a></li>
+        <li><a href="/issued-books">Выданные книги</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div>
+        <h2>Список всех выданных книг</h2>
+        <table id="bookTable">
+            <thead>
+            <tr>
+                <th>Имя студента</th>
+                <th>Фамилия студента</th>
+                <th>Название книги</th>
+                <th>Издательство</th>
+                <th>Дата выдачи</th>
+                <th>Дата возврата</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="issuedBook : ${issuedBooks}">
+                <td th:text="${issuedBook.student.name}"></td> <!-- Имя студента -->
+                <td th:text="${issuedBook.student.surname}"></td>  <!-- Фамилия студента -->
+                <td th:text="${issuedBook.book.title}"></td>        <!-- Название книги -->
+                <td th:text="${issuedBook.book.publisher}"></td>    <!-- Издательство книги -->
+                <td th:text="${issuedBook.issueDate}"></td>         <!-- Дата выдачи -->
+                <td th:text="${issuedBook.returnDate}"></td>        <!-- Дата возврата (может быть null, если книга не возвращена) -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2>Гистограмма выдачи книг по дням</h2>
+        <canvas id="issuedBooksChart"></canvas>
+    </div>
+</div>
 <script>
     // Функция для получения данных о выдаче книг из таблицы
     function getBookDataFromTable() {

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <title>Студентики</title>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li><a href="/books">Книги</a></li>
+        <li><a href="/students">Ученики</a></li>
+        <li><a href="/issued-books">Выданные книги</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Студенты в БД</h2>
+    <br/>
+    <a href="/students/add">Добавить ученика</a>
+    <table id="bookTable">
+        <thead>
+        <tr>
+            <th>Название книги</th>
+            <th>Издательство</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.name}"></td> <!-- Название книги -->
+            <td th:text="${student.surname}"></td> <!-- Издательство -->
+            <td>
+                <!-- Форма с POST-запросом для удаления книги -->
+                <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+                <form th:action="@{/students/edit/{id}(id=${student.id})}" method="get">
+                    <button type="submit">Редактировать</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

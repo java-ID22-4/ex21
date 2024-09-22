@@ -24,7 +24,7 @@ public class BookController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("book", new Book());
-        return "booksAddPage";
+        return "addBookPage";
     }
 
     @PostMapping("/add")
@@ -46,7 +46,7 @@ public class BookController {
     ) {
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
-        return "bookEdit";
+        return "editBookPage";
     }
 
     @PostMapping("/edit/{id}")

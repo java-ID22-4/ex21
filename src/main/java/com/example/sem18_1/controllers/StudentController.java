@@ -1,6 +1,5 @@
 package com.example.sem18_1.controllers;
 
-import com.example.sem18_1.models.Book;
 import com.example.sem18_1.services.StudentService;
 import com.example.sem18_1.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class StudentController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("student", new Student());
-        return "studentAdd";
+        return "addStudentPage";
     }
 
     @PostMapping("/add")
@@ -46,19 +45,19 @@ public class StudentController {
             Model model
     ) {
         Student student = studentService.getStudentById(id);
-        model.addAttribute("book", student);
-        return "studentEdit";
+        model.addAttribute("student", student);
+        return "editStudentPage";
     }
 
     @PostMapping("/edit/{id}")
     public String updateStudent(
             @PathVariable Long id,
-            @ModelAttribute Book updatedBook
+            @ModelAttribute Student updateStudent
     ) {
         Student existingStudent = studentService.getStudentById(id);
 
-        existingStudent.setName(updatedBook.getTitle());
-        existingStudent.setSurname(updatedBook.getPublisher());
+        existingStudent.setName(updateStudent.getName());
+        existingStudent.setSurname(updateStudent.getSurname());
 
         studentService.saveStudent(existingStudent);
 

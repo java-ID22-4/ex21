@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(238,236,231,0.95);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 20vw;
+}
+
+form input {
+    padding-bottom: 10px;
+}
+form label {
+    padding: 10px 0 10px 0;
+}
+form button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+form a {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 138, 44);
+    text-decoration: none;
+    color: black;
+    max-width: 11vw;
+    font-size: 0.9rem;
+}
+
+.content {
+    justify-content: center;
+    overflow: scroll;
+    margin-left: calc(13vw + 20px);
+    width: calc(100vw - 13vw);
+    padding-top: 30px;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 13vw;
+    background-color: rgba(108,108,108,0.28);
+    text-decoration: none;
+}
+
+.sidebar ul {
+    margin-top: 30px;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(255, 165, 75);
+    color: black;
+    cursor: pointer;
+}
+
+.sidebar ul li a:hover {
+    color: #ffffff;
+    background-color: rgb(255, 134, 0);
+}

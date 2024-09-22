@@ -19,7 +19,7 @@ public class IssuedBookController {
     @GetMapping
     public String listIssuedBooks(Model model) {
         model.addAttribute("issuedBooks", issuedBookService.getAllIssuedBooks());
-        return "issuedBooks";
+        return "issuedBooksPage";
     }
 
     @GetMapping("/filter")
@@ -29,7 +29,7 @@ public class IssuedBookController {
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
         model.addAttribute("issuedBooks", issuedBookService.filterByIssueDate(start, end));
-        return "issuedBooks";
+        return "issuedBooksPage";
     }
 }
 

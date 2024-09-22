@@ -1,0 +1,13 @@
+#issuedBooksChart {
+    display: flex;
+    flex-direction: column;
+    width: 1vw;
+    height: 10vh;
+    padding-left: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: normal;
+    padding-left: 10px;
+}

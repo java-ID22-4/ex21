@@ -3,12 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Список книг</title>
+    <script>
+        // Функция для фильтрации книг по названию
+        function searchBooks() {
+            // Получаем поисковый запрос
+            let query = document.getElementById("searchInput").value.toLowerCase();
+
+            // Получаем все строки таблицы с книгами
+            let rows = document.querySelectorAll("#bookTable tbody tr");
+
+            rows.forEach(function(row) {
+                // Получаем название книги в строке
+                let title = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+                let publisher = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+
+                // Если название книги содержит поисковый запрос, показываем строку, иначе скрываем
+                if (title.includes(query) || publisher.includes(query)) {
+                    row.style.display = ""; // Показываем строку
+                } else {
+                    row.style.display = "none"; // Скрываем строку
+                }
+            });
+        }
+        function countBooks() {
+            let rows = document.querySelectorAll("#bookTable tbody tr");
+            document.getElementById("totalBooks").textContent = rows.length;
+        }
+    </script>
 </head>
-<body>
+<body onload="countBooks()">
 <h1>Список всех книг</h1>
+<p>Всего книг: <span id="totalBooks"></span></p>
+
+<!-- Поле для поиска -->
+<label for="searchInput"></label>
+<input type="text" id="searchInput" placeholder="Введите название книги" onkeyup="searchBooks()">
 
 <!-- Таблица для отображения всех книг -->
-<table border="1">
+<table border="1" id="bookTable">
     <thead>
     <tr>
         <th>Название книги</th>

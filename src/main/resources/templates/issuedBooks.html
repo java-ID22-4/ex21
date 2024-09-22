@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Выданные книги</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1>Выданные книги</h1>
+<h1>Список всех выданных книг</h1>
 
-<table border="1">
+<!-- Таблица для отображения всех выданных книг -->
+<table border="1" id="bookTable">
     <thead>
     <tr>
         <th>Имя студента</th>
@@ -31,5 +33,60 @@
     </tr>
     </tbody>
 </table>
+
+<h2>Гистограмма выдачи книг по дням</h2>
+
+<!-- Элемент для отображения гистограммы -->
+<canvas id="issuedBooksChart" width="400" height="200"></canvas>
+
+<script>
+    // Функция для получения данных о выдаче книг из таблицы
+    function getBookDataFromTable() {
+        let rows = document.querySelectorAll("#bookTable tbody tr");
+        let issuedBookStats = {};
+
+        rows.forEach(function(row) {
+            let issueDate = row.cells[4].textContent.trim(); // Получаем дату выдачи из третьей колонки
+            if (issuedBookStats[issueDate]) {
+                issuedBookStats[issueDate]++;
+            } else {
+                issuedBookStats[issueDate] = 1;
+            }
+        });
+
+        return issuedBookStats;
+    }
+
+    // Получаем данные о количестве выданных книг по дням
+    const issuedBookStats = getBookDataFromTable();
+
+    // Извлекаем ключи (даты) и значения (количество книг) из объекта
+    const labels = Object.keys(issuedBookStats); // Даты
+    const data = Object.values(issuedBookStats); // Количество выданных книг
+
+    // Создание графика с использованием Chart.js
+    const ctx = document.getElementById('issuedBooksChart').getContext('2d');
+    const issuedBooksChart = new Chart(ctx, {
+        type: 'bar', // Тип графика - гистограмма
+        data: {
+            labels: labels, // Метки (даты)
+            datasets: [{
+                label: 'Количество выданных книг',
+                data: data, // Данные (количество выданных книг по дням)
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true // Начинать ось Y с нуля
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>
+

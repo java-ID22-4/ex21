@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Getter
 @Setter
 @Entity
 public class Book {
@@ -14,9 +16,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     private String title;
-    @Getter
     private String publisher;
 
     public Book() {}

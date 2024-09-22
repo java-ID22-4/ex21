@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
 
+
+@Getter
 @Setter
 @Entity
 public class IssuedBook {
@@ -18,19 +20,15 @@ public class IssuedBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
-    @Getter
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
-    @Getter
     private LocalDate issueDate;  // Дата выдачи
-    @Getter
     private LocalDate returnDate; // Дата возврата
 
     public IssuedBook() {}

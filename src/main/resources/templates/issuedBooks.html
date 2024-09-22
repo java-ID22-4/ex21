@@ -10,26 +10,24 @@
 <table border="1">
     <thead>
     <tr>
-<!--        <th>Имя студента</th>-->
-<!--        <th>Фамилия студента</th>-->
+        <th>Имя студента</th>
+        <th>Фамилия студента</th>
         <th>Название книги</th>
         <th>Издательство</th>
-<!--        <th>Дата выдачи</th>-->
-<!--        <th>Дата возврата</th>-->
+        <th>Дата выдачи</th>
+        <th>Дата возврата</th>
         <th></th>
-<!--        <th>Вернуть книгу</th>-->
     </tr>
     </thead>
     <tbody>
     <tr th:each="issuedBook : ${issuedBooks}">
-<!--        <td th:text="${issuedBook.student.name}"></td> &lt;!&ndash; Имя студента &ndash;&gt;-->
-<!--        <td th:text="${issuedBook.student.surname}"></td>  &lt;!&ndash; Фамилия студента &ndash;&gt;-->
+        <td th:text="${issuedBook.student.name}"></td> <!-- Имя студента -->
+        <td th:text="${issuedBook.student.surname}"></td>  <!-- Фамилия студента -->
         <td th:text="${issuedBook.book.title}"></td>        <!-- Название книги -->
         <td th:text="${issuedBook.book.publisher}"></td>    <!-- Издательство книги -->
-<!--        <td th:text="${issuedBook.issueDate}"></td>         &lt;!&ndash; Дата выдачи &ndash;&gt;-->
-<!--        <td th:text="${issuedBook.returnDate}"></td>        &lt;!&ndash; Дата возврата (может быть null, если книга не возвращена) &ndash;&gt;-->
-<!--        <td th:text="Нет"></td>-->
-        <td><button>Редактировать</button></td>
+        <td th:text="${issuedBook.issueDate}"></td>         <!-- Дата выдачи -->
+        <td th:text="${issuedBook.returnDate}"></td>        <!-- Дата возврата (может быть null, если книга не возвращена) -->
+        <td th:text="Нет"></td>
     </tr>
     </tbody>
 </table>

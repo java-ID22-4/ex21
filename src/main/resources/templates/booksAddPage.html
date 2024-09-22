@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить книгу</title>
+</head>
+<body>
+<h1>Добавить книгу</h1>
+
+<form action="/books/add" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <label for="title">Название книги:</label>
+    <input type="text" id="title" name="title" placeholder="Введите название" required />
+
+    <label for="publisher">Издательство:</label>
+    <input type="text" id="publisher" name="publisher" placeholder="Введите издательство" required />
+
+    <button type="submit">Добавить книгу</button>
+</form>
+
+<a href="/books">Назад к списку книг</a>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.example.sem18_1.services;
 
+import com.example.sem18_1.models.Book;
 import com.example.sem18_1.models.Student;
 import com.example.sem18_1.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id).orElse(null);
+    }
+
+    public void saveStudent(Student student) {
+        studentRepository.save(student);
     }
 
     public void deleteStudent(Long id) {

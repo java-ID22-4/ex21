@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Getter
 @Setter
 @Entity
 public class Student {
@@ -14,9 +16,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     private String name;
-    @Getter
+
     private String surname;
 
     public Student() {}

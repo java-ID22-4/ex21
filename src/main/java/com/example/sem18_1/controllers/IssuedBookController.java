@@ -1,7 +1,7 @@
 package com.example.sem18_1.controllers;
 
 import com.example.sem18_1.services.IssuedBookService;
-import com.example.sem18_1.models.IssuedBook;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,19 +20,6 @@ public class IssuedBookController {
     public String listIssuedBooks(Model model) {
         model.addAttribute("issuedBooks", issuedBookService.getAllIssuedBooks());
         return "issuedBooks";
-    }
-
-    @GetMapping("/issue")
-    public String showIssueForm(Model model) {
-        model.addAttribute("issuedBook", new IssuedBook());
-        return "issuedBooks";
-    }
-
-    @PostMapping("/issue")
-    public String issueBook(@ModelAttribute IssuedBook issuedBook) {
-        issuedBook.setIssueDate(LocalDate.now());
-        issuedBookService.issueBook(issuedBook);
-        return "redirect:/issuedBooks";
     }
 
     @GetMapping("/filter")

@@ -56,7 +56,7 @@ public class EquipmentController {
     ) {
         Equipment existingEquipment = equipmentService.getEquipmentById(id);
 
-        existingEquipment.setType(updatedEquipment.getType());
+        existingEquipment.setTitle(updatedEquipment.getTitle());
         existingEquipment.setGroup(updatedEquipment.getGroup());
 
         equipmentService.saveEquipment(existingEquipment);

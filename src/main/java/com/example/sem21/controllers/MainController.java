@@ -14,7 +14,7 @@ public class MainController {
     private ShippedEquipmentService shippedEquipmentService;
 
     @GetMapping
-    public String listShippedEquipments() {
+    public String mainPage() {
         return "index";
     }
 }

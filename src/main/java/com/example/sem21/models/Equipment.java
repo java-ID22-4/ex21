@@ -16,8 +16,7 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
-
+    private String title;
     private String group;
 
     public Equipment() {}

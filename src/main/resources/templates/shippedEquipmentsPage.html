@@ -34,7 +34,7 @@
             <tr th:each="shippedEquipment : ${shippedEquipments}">
                 <td th:text="${shippedEquipment.driver.name}"></td>
                 <td th:text="${shippedEquipment.driver.surname}"></td>
-                <td th:text="${shippedEquipment.equipment.type}"></td>
+                <td th:text="${shippedEquipment.equipment.title}"></td>
                 <td th:text="${shippedEquipment.equipment.group}"></td>
                 <td th:text="${shippedEquipment.shipDate}"></td>
                 <td th:text="${shippedEquipment.uploadDate}"></td>
@@ -48,9 +48,8 @@
     </div>
 </div>
 <script>
-    // Функция для получения данных о выдаче книг из таблицы
     function getEquipmentDataFromTable() {
-        let rows = document.querySelectorAll("#equipmentTable tbody tr");
+        let rows = document.querySelectorAll("#shippedEquipmentTable tbody tr");
         let shippedEquipmentStats = {};
 
         rows.forEach(function(row) {

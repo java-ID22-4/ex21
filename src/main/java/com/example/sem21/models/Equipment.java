@@ -17,7 +17,7 @@ public class Equipment {
     private Long id;
 
     private String title;
-    private String group;
+    private String group_name;
 
     public Equipment() {}
 }

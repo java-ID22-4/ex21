@@ -1,4 +1,4 @@
-package com.example.sem18_1.models;
+package com.example.sem21.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,13 +11,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Book {
+public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String publisher;
+    private String type;
 
-    public Book() {}
+    private String group;
+
+    public Equipment() {}
 }

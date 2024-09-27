@@ -1,4 +1,4 @@
-package com.example.sem18_1.models;
+package com.example.sem21.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,22 +14,22 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-public class IssuedBook {
+public class ShippedEquipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book book;
+    @JoinColumn(name = "equipment_id", referencedColumnName = "id")
+    private Equipment equipment;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    private Student student;
+    @JoinColumn(name = "driver_id", referencedColumnName = "id")
+    private Driver driver;
 
-    private LocalDate issueDate;  // Дата выдачи
-    private LocalDate returnDate; // Дата возврата
+    private LocalDate shipDate;  // Дата выгрузки
+    private LocalDate uploadDate; // Дата загрузки
 
-    public IssuedBook() {}
+    public ShippedEquipment() {}
 }

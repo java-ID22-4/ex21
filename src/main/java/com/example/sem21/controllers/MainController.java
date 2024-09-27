@@ -1,6 +1,6 @@
-package com.example.sem18_1.controllers;
+package com.example.sem21.controllers;
 
-import com.example.sem18_1.services.IssuedBookService;
+import com.example.sem21.services.ShippedEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 
     @Autowired
-    private IssuedBookService issuedBookService;
+    private ShippedEquipmentService shippedEquipmentService;
 
     @GetMapping
-    public String listIssuedBooks() {
+    public String listShippedEquipments() {
         return "index";
     }
 }

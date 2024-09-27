@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <title>Техника</title>
+    <script>
+        function searchEquipments() {
+            // Получаем поисковый запрос
+            let query = document.getElementById("searchInput").value.toLowerCase();
+
+            // Получаем все строки таблицы с техниками
+            let rows = document.querySelectorAll("#equipmentTable tbody tr");
+
+            rows.forEach(function(row) {
+                // Получаем тип техники в строке
+                let type = row.querySelector("td:nth-child(1)").textContent.toLowerCase();
+                let group = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+
+                // Если тип техники содержит поисковый запрос, показываем строку, иначе скрываем
+                if (type.includes(query) || group.includes(query)) {
+                    row.style.display = ""; // Показываем строку
+                } else {
+                    row.style.display = "none"; // Скрываем строку
+                }
+            });
+        }
+        function countEquipments() {
+            let rows = document.querySelectorAll("#equipmentTable tbody tr");
+            document.getElementById("totalEquipments").textContent = rows.length;
+        }
+    </script>
+</head>
+<body onload="countEquipments()">
+<div class="sidebar">
+    <ul>
+        <li><a href="/equipments">Техника</a></li>
+        <li><a href="/drivers">Водители</a></li>
+        <li><a href="/shipped-equipments">Выгруженная техника</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Техника</h2>
+    <p>Всего техники: <span id="totalEquipments"></span></p>
+    <br/>
+    <label for="searchInput"></label>
+    <p>Поиск:</p>
+    <input type="text" id="searchInput" placeholder="Введите тип техники" onkeyup="searchEquipments()">
+    <br/>
+    <br/>
+    <a href="/equipments/add">Добавить технику</a>
+    <table id="equipmentTable">
+        <thead>
+        <tr>
+            <th>Тип техники</th>
+            <th>Группа техники</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tr th:each="equipment : ${equipments}">
+            <td th:text="${equipment.type}"></td>
+            <td th:text="${equipment.group}"></td>
+            <td>
+                <form th:action="@{/equipments/delete/{id}(id=${equipment.id})}" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+                <form th:action="@{/equipments/edit/{id}(id=${equipment.id})}" method="get">
+                    <button type="submit">Редактировать</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

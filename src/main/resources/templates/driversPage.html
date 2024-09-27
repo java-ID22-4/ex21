@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <title>Водители</title>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li><a href="/equipments">Техника</a></li>
+        <li><a href="/drivers">Водители</a></li>
+        <li><a href="/shipped-equipments">Выгруженная техника</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Водители в БД</h2>
+    <br/>
+    <a href="/drivers/add">Добавить водителя</a>
+    <table id="equipmentTable">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tr th:each="driver : ${drivers}">
+            <td th:text="${driver.name}"></td>
+            <td th:text="${driver.surname}"></td>
+            <td>
+                <form th:action="@{/drivers/delete/{id}(id=${driver.id})}" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+                <form th:action="@{/drivers/edit/{id}(id=${driver.id})}" method="get">
+                    <button type="submit">Редактировать</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

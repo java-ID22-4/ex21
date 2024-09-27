@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выгруженная техника</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/shippedEquipment.css}"/>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li><a href="/equipments">Техника</a></li>
+        <li><a href="/drivers">Водители</a></li>
+        <li><a href="/shipped-equipments">Выгруженная техника</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div>
+        <h2>Список всей выгруженной техники</h2>
+        <table id="shippedEquipmentTable">
+            <thead>
+            <tr>
+                <th>Имя водителя</th>
+                <th>Фамилия водителя</th>
+                <th>Тип техники</th>
+                <th>Группа техники</th>
+                <th>Дата выгрузки</th>
+                <th>Дата загрузки</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shippedEquipment : ${shippedEquipments}">
+                <td th:text="${shippedEquipment.driver.name}"></td>
+                <td th:text="${shippedEquipment.driver.surname}"></td>
+                <td th:text="${shippedEquipment.equipment.type}"></td>
+                <td th:text="${shippedEquipment.equipment.group}"></td>
+                <td th:text="${shippedEquipment.shipDate}"></td>
+                <td th:text="${shippedEquipment.uploadDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2>Гистограмма количества отгруженной техники по дням</h2>
+        <canvas id="shippedEquipmentsChart"></canvas>
+    </div>
+</div>
+<script>
+    // Функция для получения данных о выдаче книг из таблицы
+    function getEquipmentDataFromTable() {
+        let rows = document.querySelectorAll("#equipmentTable tbody tr");
+        let shippedEquipmentStats = {};
+
+        rows.forEach(function(row) {
+            let shipDate = row.cells[4].textContent.trim(); // Получаем дату выдачи из третьей колонки
+            if (shippedEquipmentStats[shipDate]) {
+                shippedEquipmentStats[shipDate]++;
+            } else {
+                shippedEquipmentStats[shipDate] = 1;
+            }
+        });
+
+        return shippedEquipmentStats;
+    }
+
+    const shippedEquipmentStats = getEquipmentDataFromTable();
+
+    const labels = Object.keys(shippedEquipmentStats);
+    const data = Object.values(shippedEquipmentStats);
+
+    const ctx = document.getElementById('shippedEquipmentsChart').getContext('2d');
+    const shippedEquipmentsChart = new Chart(ctx, {
+        type: 'bar', // Тип графика - гистограмма
+        data: {
+            labels: labels, // Метки (даты)
+            datasets: [{
+                label: 'Количество выгруженной техники',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true // Начинать ось Y с нуля
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
+

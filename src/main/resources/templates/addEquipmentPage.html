@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <title>Добавляем технику!</title>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li><a href="/equipments">Техника</a></li>
+        <li><a href="/drivers">Водители</a></li>
+        <li><a href="/shipped-equipments">Выгруженная техника</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Добавление техники</h2>
+    <form action="/equipments/add" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <label for="type">Тип техники:</label>
+        <input type="text" id="type" name="type" placeholder="Введите тип техники" required />
+
+        <label for="group">Группа:</label>
+        <input type="text" id="group" name="group" placeholder="Введите группу техники" required />
+
+        <button type="submit">Добавить технику</button>
+
+        <a href="/equipments">Назад к списку техник</a>
+    </form>
+</div>
+</body>
+</html>

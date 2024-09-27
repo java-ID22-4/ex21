@@ -1,10 +1,10 @@
-package com.example.sem18_1;
+package com.example.sem21;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Sem181ApplicationTests {
+class Sem21ApplicationTests {
 
     @Test
     void contextLoads() {

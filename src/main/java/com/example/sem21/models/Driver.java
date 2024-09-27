@@ -1,4 +1,4 @@
-package com.example.sem18_1.models;
+package com.example.sem21.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Student {
+public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +20,5 @@ public class Student {
 
     private String surname;
 
-    public Student() {}
+    public Driver() {}
 }

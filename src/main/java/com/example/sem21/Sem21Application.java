@@ -1,13 +1,13 @@
-package com.example.sem18_1;
+package com.example.sem21;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sem181Application {
+public class Sem21Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Sem181Application.class, args);
+        SpringApplication.run(Sem21Application.class, args);
     }
 
 }

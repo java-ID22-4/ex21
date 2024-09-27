@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/tablePages.css}"/>
+    <title>Редачим технику</title>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li><a href="/equipments">Техника</a></li>
+        <li><a href="/drivers">Водители</a></li>
+        <li><a href="/shipped-equipments">Выгруженная техника</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Изменение техники</h2>
+    <form action="/equipments/edit" th:action="@{/equipments/edit/{id}(id=${equipment.id})}" method="post">
+        <input type="hidden" name="id" th:value="${equipment.id}" />
+
+        <label for="type">Тип техники:</label>
+        <input type="text" id="type" name="type" th:value="${equipment.type}" required />
+
+        <label for="group">Группа техники:</label>
+        <input type="text" id="group" name="group" th:value="${equipment.group}" required />
+
+        <button type="submit">Сохранить изменения</button>
+
+        <a href="/equipments">Назад к списку техник</a>
+    </form>
+</div>
+</body>
+</html>

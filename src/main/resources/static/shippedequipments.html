@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выгрузить технику</title>
+</head>
+<body>
+<h1>Выгрузить технику</h1>
+
+<form action="/shipped-equipments/ship" method="post">
+    <label for="equipment">Техника:</label>
+    <select name="equipment.id">
+        <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.type}"></option>
+    </select>
+
+    <label for="driver">Водитель:</label>
+    <select name="driver.id">
+        <option th:each="driver : ${drivers}" th:value="${driver.id}" th:text="${driver.firstName} + ' ' + ${driver.lastName}"></option>
+    </select>
+
+    <button type="submit">Выгрузить</button>
+</form>
+</body>
+</html>
